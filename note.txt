@@ -12,7 +12,7 @@ bunx convex dev -> (run)
 2. buat func untuk query di convex folder, misal convex/tasks.ts dia ada fungsi buat select * from tasks // await ctx.db.query("tasks").collect()
 3. buat client compo, biar bisa digunakan di next system, tinggal nge wrap children yang ada di layout.tsx
 4. terus tinggal panggil deh di page kamu
-4.1. imrport useQuery, api 
+4.1. import useQuery, api 
 4.2. const tasks = useQuery(api.{file-di-convex}.{fungsinya})
 4.3. iterate pake : tasks?.map(({_id, text}) => <div>{text}</div>
 
@@ -34,5 +34,17 @@ https://console.cloud.google.com/ > new project > apis & services > Oatuh consen
 Setelah tersetup pasti dapat client id dan secret, tambahkan ke convex env dengan bunx convex set env AUTH_GOOGLE_ID
 Convex auth.ts > add google > signinCard > sama kayak github
 
+Setup Password : 
+tinggal nambahin custom password di auth.ts di /convex
+tambahin tu password di sign-in-card and sign-up-card
+
+User Button : 
+buat users.ts di /convex, buat function get
+terus import api.users.get di page yang kamu inginkan, kalo users, dihandle dulu di hooks buat return data dan isLoading kalo datanya belom kebaca
+baru ditambahin di page yang kalian inginkan
+
+Workspace Creation : 
+bun add jotai
+bunx shadcn@latest add dialog
 
 
