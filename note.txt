@@ -1,0 +1,38 @@
+init : 
+bunx
+bunx --bun shadcn@latest init
+bunx shadcn@latest add card input separator button
+bun add react-icons
+
+backend: 
+bun add convex
+bunx convex dev -> (run)
+- cara kerja 
+1. misal dah ada data nih : npx convex import --table tasks sample.jsonl
+2. buat func untuk query di convex folder, misal convex/tasks.ts dia ada fungsi buat select * from tasks // await ctx.db.query("tasks").collect()
+3. buat client compo, biar bisa digunakan di next system, tinggal nge wrap children yang ada di layout.tsx
+4. terus tinggal panggil deh di page kamu
+4.1. imrport useQuery, api 
+4.2. const tasks = useQuery(api.{file-di-convex}.{fungsinya})
+4.3. iterate pake : tasks?.map(({_id, text}) => <div>{text}</div>
+
+Auth with convex auth and auth.js : 
+bun add @convex-dev/auth @auth/core
+bunx @convex-dev/auth\
+add import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server" in layout.tsx
+replace convexprovider in convex-client-provider.ts with import { ConvexAuthNextjsProvider } from "@convex-dev/auth/nextjs"; 
+add middleware.ts di src
+add createRouteMatcher buat default kalo belom login,jadi kalua !isAuthenticateNextjs maka nextjsMiddlewareRedirect ke signin page.
+
+Setup GitHub Auth : 
+dev settings > Oauth apps > [convex > project > settings > url n deploy key > copy http actions url + /api/auth/callback/github kalo di paling bawah] > register > bunx convex env set AUTH_GITHUB_ID={clientId} > generate a new client secret > bunx convex env set AUTH_GITHUB_SECRET={secret.client}
+add providers in convex/auth.ts and import GitHub from "@auth/core/providers/github"
+Go to sign-in card.tsx and extranct signIn from useAuthAction and make a handler for signIn(value : "GitHub" | : "google"), add the handler to GitHub button login
+
+Setup Google Auth : 
+https://console.cloud.google.com/ > new project > apis & services > Oatuh consent screen > external > authorized domain section add html for convex > skippa skippa > go to credentials > + create credentials > Oauth ClientID > app type : web application > auth js origins add uri localhost uri > auth redirect uri add : https://clean-pika-819.convex.site/api/auth/callback/google
+Setelah tersetup pasti dapat client id dan secret, tambahkan ke convex env dengan bunx convex set env AUTH_GOOGLE_ID
+Convex auth.ts > add google > signinCard > sama kayak github
+
+
+
