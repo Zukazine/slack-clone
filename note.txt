@@ -45,6 +45,6 @@ baru ditambahin di page yang kalian inginkan
 
 Workspace Creation : 
 bun add jotai
-bunx shadcn@latest add dialog
+bunx shadcn@latest add dialog sonner
 
 
