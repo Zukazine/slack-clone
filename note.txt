@@ -48,3 +48,6 @@ bun add jotai
 bunx shadcn@latest add dialog sonner
 
 
+Workspace Header: 
+bunx shadcn@latest add resizable
+bunx shadcn@latest add tooltip

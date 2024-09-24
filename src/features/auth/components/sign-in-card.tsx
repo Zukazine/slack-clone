@@ -8,12 +8,14 @@ import { SignInFlow } from "../types";
 import { useState } from "react";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { TriangleAlert } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface SignInCardProps {
   setState: (state: SignInFlow) => void;
 }
 
 const SignInCard = ({ setState } : SignInCardProps) => {
+  const router = useRouter()
   const { signIn } = useAuthActions()
   
   const [email, setEmail] = useState("")
@@ -31,6 +33,7 @@ const SignInCard = ({ setState } : SignInCardProps) => {
       })
       .finally(() => {
         setPending(false)
+        router.push('/')
       })
   }
 
@@ -76,7 +79,7 @@ const SignInCard = ({ setState } : SignInCardProps) => {
             type="password"
             required
           />
-          <Button className="w-full" type="submit" size='lg' disabled={false}>
+          <Button className="w-full" type="submit" size='lg' disabled={pending} variant='default'>
             Continue
           </Button>
         </form>
