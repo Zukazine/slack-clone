@@ -51,3 +51,8 @@ bunx shadcn@latest add dialog sonner
 Workspace Header: 
 bunx shadcn@latest add resizable
 bunx shadcn@latest add tooltip
+
+Workspace preferences: 
+
+Channel n Members :
+bunx add react-use
