@@ -55,4 +55,15 @@ bunx shadcn@latest add tooltip
 Workspace preferences: 
 
 Channel n Members :
-bunx add react-use
+bun add react-use
+
+Create channel functionality :
+
+Workspace Invite Modal : 
+
+Workspace Join Page : 
+
+Channel Page : 
+
+Channel Header : 
+
