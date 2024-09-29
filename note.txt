@@ -67,3 +67,8 @@ Channel Page :
 
 Channel Header : 
 
+Workspace join page :
+bun add react-verification-input
+
+Editor : 
+bun add quill
